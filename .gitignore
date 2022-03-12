@@ -1,0 +1,4 @@
+# Project exclude paths
+/target/
+/src/test/resources/chromedriver
+/src/main/resources/chromedriver

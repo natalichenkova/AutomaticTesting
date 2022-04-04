@@ -16,6 +16,13 @@ public class TestTriangleArea {
                 Arguments.of(new Triangle(3, 3, 3), 9));
     }
 
+    public static Stream<Arguments> areaTriangles() {
+        return Stream.of(Arguments.of(new Triangle(3, 4, 5), 6),
+                Arguments.of(new Triangle(8, 11, 6), 23.42),
+                Arguments.of(new Triangle(4, 7, 6), 11.98));
+
+    }
+
     @ParameterizedTest(name = "Периметр треугольника: позитивный сценарий, периметр треугольника {0} == {1}")
     @MethodSource("triangles")
     void countPerimeterPositiveTest(Triangle triangle, int expectedResult) {
@@ -24,6 +31,13 @@ public class TestTriangleArea {
                 .isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest(name = "Площадь треугольника: позитивный сценарий {0} == {1}")
+    @MethodSource("areaTriangles")
+    void areaPerimeterPositiveTest(Triangle triangle, double expectedResult) {
+        double area = triangle.countArea();
+        assertThat(area).as("Проверяем, что площадь должна ....")
+                .isEqualTo(expectedResult);
+    }
 
     public static Stream<Arguments> negativeTriangles() {
         return Stream.of(Arguments.of(new Triangle(0, 3, 3), "Sides must be positive"),
@@ -38,7 +52,7 @@ public class TestTriangleArea {
         );
     }
 
-    @ParameterizedTest(name = "Периметр треугольника: негативный сценарий (треугольника {0}, ошибка:{1})")
+    @ParameterizedTest(name = "Периметр треугольника: негативный сценарий (треугольник {0}, ошибка:{1})")
     @MethodSource("negativeTriangles")
     public void countPerimeterNegativeTest(Triangle triangle, String errorText) {
         assertThatThrownBy(triangle::countPerimeter)

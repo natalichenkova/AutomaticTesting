@@ -33,9 +33,11 @@ public class Triangle {
     public double countArea() {
         checkSidesArePositive();
         checkOneSideIsSmallerThanSumOfOthers();
-        double p = (a + b + c) /2;
-        double s = Math.sqrt((p-a) * (p - b) * (p- c));
-        return s;
+        double p = (a + b + c) / 2.00;
+        double s = Math.sqrt (p * (p - a) * (p - b) * (p - c));
+        return Math.ceil (s * 100) / 100;
+
+
     }
     
     

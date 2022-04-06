@@ -1,4 +1,4 @@
-package org.example;
+package org.example.lesson_5;
 
 /**
  * Hello world!
